@@ -1,0 +1,568 @@
+{
+/*
+	// Place your snippets for Shell Script here. Each snippet is defined under a snippet name and has a prefix, body and 
+	// description. The prefix is what is used to trigger the snippet and the body will be expanded and inserted. Possible variables are:
+	// $1, $2 for tab stops, $0 for the final cursor position, and ${1:label}, ${2:another} for placeholders. Placeholders with the 
+	// same ids are connected.
+	// Example:
+	"Print to console": {
+		"prefix": "log",
+		"body": [
+			"console.log('$1');",
+			"$2"
+		],
+		"description": "Log output to console"
+	}
+*/
+	"printf ": {
+		"prefix": "printf",
+		"body": [
+			"printf '%s\\n' \"${1}\"",
+		],
+		"description": "printfを使います。"
+	},
+	"init": {
+		"prefix": "init",
+		"body": [
+			"#!/bin/bash",
+			"# 実行コマンドを表示",
+			"# set -v",
+			"# 実行しようとしているコマンドが表示される。変数は展開される",
+			"set -o xtrace",
+			"readonly SCRIPT_NAME=\\${0##*\/}"
+		],
+		"description": "初期設定です。"
+	},
+	"case": {
+		"prefix": "case",
+		"body": [
+			"case \"$${1}\" in",
+			"\t${2}",
+			"esac",
+		],
+		"description": "case分です。"
+	},
+	"printf_error": {
+		"prefix": "printf_error",
+		"body": [
+			"printf '%s\\n' \"\\${SCRIPT_NAME}: '$${1}': \" 1>&2"
+		],
+		"description": "エラー文を出力するときに使う。"
+	},
+	"if [[ ]]; then": {
+		"prefix": "if",
+		"body": [
+			"if [[ ${1} ]]; then",
+			"\t${2}",
+			"fi"
+		],
+		"description": "if文の定型文"
+	},
+	"if [[ $# -le 0 ]]; then": {
+		"prefix": "if$#",
+		"body": [
+			"if [[ $# -le 0 ]]; then",
+			"\tprintf '%s\\n' \"\\${SCRIPT_NAME}: ${2}\" 1>&2",
+			"\t${3}",
+			"fi"
+		],
+		"description": "引数が0のときにエラー文を出力する。"
+	},
+	"if [[ -z $ ]]; then": {
+		"prefix": "if-z",
+		"body": [
+			"if [[ -z $${1} ]]; then",
+			"\tprintf '%s\\n' \"\\${SCRIPT_NAME}: ${2}\" 1>&2",
+			"\t${3}",
+			"fi"
+		],
+		"description": "引数が空のときにエラー文を出力する。"
+	},
+	"return": {
+		"prefix": "return",
+		"body": [
+			"return ${1}",
+		],
+		"description": "関数を終了させるときに使う。"
+	},
+	"exit": {
+		"prefix": "exit",
+		"body": [
+			"exit ${1}",
+		],
+		"description": "シェルスクリプトを終了させるときに使う。"
+	},
+	"if [[ ! -f $ ]]; then": {
+		"prefix": "if-",
+		"body": [
+			"if [[ ! -${1} $${2} ]]; then",
+			"\tprintf '%s\\n' \"\\${SCRIPT_NAME}: '$${3}':\" 1>&2",
+			"\t${4}",
+			"fi"
+		],
+		"description": "引数がファイルorディレクトリではないときにエラー文を出力する。"
+	},
+	"if [[ $? -ne 0 ]]; then": {
+		"prefix": "if$?",
+		"body": [
+			"if [[ $? -ne 0 ]]; then",
+			"\t${1}",
+			"\t${2}",
+			"fi"
+		],
+		"description": "直前のコマンド終了ステータスが1以上のときに使う"
+	},
+	"${BASH_REMATCH[]}": {
+		"prefix": "BASHRE",
+		"body": [
+			"\\${BASH_REMATCH[${1}]}",
+		],
+		"description": "${BASH_REMATCH[]}"
+	},
+	"cat << END": {
+		"prefix": "cat<<END",
+		"body": [
+			"cat << END",
+			"${1}",
+			"END"
+		],
+		"description": "ヒアドキュメント"
+	},
+	"readonly VERSION=": {
+		"prefix": "readonly VERSION=",
+		"body": [
+			"readonly VERSION=${1}",
+		],
+		"description": "ヒアドキュメント"
+	},
+	"print_version()": {
+		"prefix": "print_version()",
+		"body": [
+			"print_version()",
+			"{",
+			"\tcat << END",
+			"\\$SCRIPT_NAME version \\$VERSION",
+			"END",
+			"}"
+		],
+		"description": "print_version()関数"
+	},
+	"print_error()": {
+		"prefix": "print_error()",
+		"body": [
+			"print_error()",
+			"{",
+			"\tcat << END 1>&2",
+			"\\$SCRIPT_NAME: \\$${1}",
+			"END",
+			"}"
+		],
+		"description": "print_error()関数"
+	},
+	"for": {
+		"prefix": "for",
+		"body": [
+			"for i in \"\\$@\"",
+			"do",
+			"\t${1}",
+			"done",
+		],
+		"description": "forループ"
+	},
+	"getopts": {
+		"prefix": "getoptswhile",
+		"body": [
+			"while getopts \"$1\" option",
+			"do",
+			"\tcase \"\\$option\" in",
+			"\t\t$2)",
+			"\t\t\t$3",
+			"\t\t\t;;",
+			"\t\t\\?)",
+			"\t\t\t",
+			"\t\t\t;;",
+			"\tesac",
+			"done",
+			"shift \\$((OPTIND - 1))",
+			"path=\"\\$1\""
+		],
+		"description": "getoptswhile文"
+	},
+	"$OPTARG": {
+		"prefix": "OPTARG",
+		"body": [
+			"OPTARG",
+		],
+		"description": "getops:で受け取った引数はシェル変数$OPTARGへ代入される"
+	},
+	"$OPTIND": {
+		"prefix": "OPTIND",
+		"body": [
+			"OPTIND",
+		],
+		"description": "getops次に解析する位置パラメータの番号がシェル変数$OPTINDへ代入される"
+	},
+	"while": {
+		"prefix": "while",
+		"body": [
+			"while $1",
+			"do",
+			"\t$2",
+			"done"
+		],
+		"description": "while文"
+	},
+	"tty": {
+		"prefix": "tty",
+		"body": [
+			"tty"
+		],
+		"description": "仮想端末のデバイス名を確認する"
+	},
+	"echo": {
+		"prefix": "echo",
+		"body": [
+			"echo $1"
+		],
+		"description": "echo コマンド"
+	},
+	"echo -e": {
+		"prefix": "echo-e",
+		"body": [
+			"echo -e \"\\\\\\033[$1;$2m $3 \\\\\\033[0m\""
+		],
+		"description": "背景と文字色を変えるechoコマンド\n パラメータを複数指定する場合は「;」で区切って書く。"
+	},
+	"30": {
+		"prefix": "b30",
+		"body": [
+			"30"
+		],
+		"description": "Foreground Color(文字色) 黒"
+	},
+	"31": {
+		"prefix": "r31",
+		"body": [
+			"31"
+		],
+		"description": "Foreground Color(文字色) 赤"
+	},
+	"32": {
+		"prefix": "g32",
+		"body": [
+			"32"
+		],
+		"description": "Foreground Color(文字色) 緑"
+	},
+	"33": {
+		"prefix": "y33",
+		"body": [
+			"33"
+		],
+		"description": "Foreground Color(文字色) 黄"
+	},
+	"34": {
+		"prefix": "b34",
+		"body": [
+			"34"
+		],
+		"description": "Foreground Color(文字色) 青"
+	},
+	"35": {
+		"prefix": "p35",
+		"body": [
+			"35"
+		],
+		"description": "Foreground Color(文字色) 紫"
+	},
+	"36": {
+		"prefix": "lb36",
+		"body": [
+			"36"
+		],
+		"description": "Foreground Color(文字色) 水"
+	},
+	"37": {
+		"prefix": "w37",
+		"body": [
+			"37"
+		],
+		"description": "Foreground Color(文字色) 白"
+	},
+	"40": {
+		"prefix": "b40",
+		"body": [
+			"40"
+		],
+		"description": "Background Color(背景色) 黒"
+	},
+	"41": {
+		"prefix": "r41",
+		"body": [
+			"41"
+		],
+		"description": "Background Color(背景色) 赤"
+	},
+	"42": {
+		"prefix": "g42",
+		"body": [
+			"42"
+		],
+		"description": "Background Color(背景色) 緑"
+	},
+	"43": {
+		"prefix": "y43",
+		"body": [
+			"43"
+		],
+		"description": "Background Color(背景色) 黄"
+	},
+	"44": {
+		"prefix": "b44",
+		"body": [
+			"44"
+		],
+		"description": "Background Color(背景色) 青"
+	},
+	"45": {
+		"prefix": "p45",
+		"body": [
+			"45"
+		],
+		"description": "Background Color(背景色) 紫"
+	},
+	"46": {
+		"prefix": "lb46",
+		"body": [
+			"46"
+		],
+		"description": "Foreground Color(文字色) 水"
+	},
+	"47": {
+		"prefix": "w47",
+		"body": [
+			"47"
+		],
+		"description": "Background Color(背景色) 白"
+	},
+	"awk-F": {
+		"prefix": "awk-F",
+		"body": [
+			"awk -F $1 '{print $2}' $3"
+		],
+		"description": "awk -F 区切り文字 '{アクション}' ファイル名 \nテキストファイルを1行ずつ読み、区切り文字に合致した行に対して、アクションで指定された内容を実行します。"
+	},
+	"tar": {
+		"prefix": "tar",
+		"body": [
+			"tar $1"
+		],
+		"description": "フルスペル：Tape ARchiver\n読み方：ター\n主に、複数のファイルで構成されるソフトウェアを転送・配布する際などに用いられる。アーカイブされたtar形式のファイルには「.tar」という拡張子が付く。ただし、tarは圧縮機能をもっていないので、圧縮のためにgzipを併用する方法が一般的となっている（gzipにはアーカイブ機能がない）。その場合、拡張子「.tar.gz」となる。\nv:　現在処理中のファイルを表示\nc: アーカイブの作成(create)\nf: アーカイブをファイルとして作成\n tar cvf archive.tar *."
+	},
+	"pv": {
+		"prefix": "pv",
+		"body": [
+			"pv $1"
+		],
+		"description": "フルスペル：Pipe Viewer\nパイプ処理中のデータの流れを可視化するコマンド。データの流れを可視化するcatコマンド。\n 例 ar cf - * | pv | gzip > archive.tar.gz\n(パイプ処理したデータサイズ)MiB (処理時間)0:00:00 [(平均速度)MiB/s] [<=>  (プログレスバー)]"
+	},
+	"tarコマンドオプション": {
+		"prefix": "tar-option",
+		"body": [
+			"# tarコマンド全般で使う共通オプション",
+			"# オプション -f（オプション --file=ARCHIVE）",
+			"# アーカイブファイル名を指定する",
+			"# オプション -v（オプション --verbose）",
+			"# アーカイブ結果を表示する",
+			"# オプション -w（オプション --interactive, オプション  --confirmation）",
+			"# 操作を行うかの確認メッセージを表示する。",
+			"# オプション --show-defaults",
+			"# tar の既定値を表示",
+			"# ===========================",
+			"# アーカイブするオプション",
+			"# オプション -c（オプション --create）\n# アーカイブを新規に作成",
+			"# オプション -r（オプション --append）\n# アーカイブに新たなファイルを追加",
+			"# オプション -u（オプション  --update）\n# 新しいファイルのみがアーカイブされる",
+			"# オプション -A（オプション  --catenate, オプション --concatenate）\n# tarアーカイブされたファイルの内容を追加する",
+			"# オプション --delete \n# アーカイブファイル内からファイルを削除する",
+			"# オプション suffix=STRING \n# バックアップのアーカイブファイルの作成",
+			"# オプション --remove-files \n# アーカイブに追加した元ファイルを削除する",
+			"# オプション -V（オプション --label=TEXT）\n# アーカイブにボリューム名を設定する",
+			"# オプション -C（オプション --directory=DIR）\n# アーカイブ元のファイルのディレクトリを指定する",
+			"# オプション --totals \n# アーカイブ後に書きだしたバイト数を表示",
+			"# オプション--utc \n# ファイルの更新時刻を表示",
+			"# オプション -W（オプション --verify）\n# アーカイブを書き出した後に検証",
+			"# ===========================",
+			"# 解凍するオプション",
+			"# オプション -x（オプション --extract, オプション --get）\n# アーカイブされたファイルを解凍し展開・復元を行う",
+			"# オプション -k（オプション --keep-old-files）\n# 解凍した際に既存のファイルを置き換えない",
+			"# オプション --keep-newer-files \n# 解凍した際に変更日時の新しいファイルを置き換えない",
+			"# オプション --overwrite \n# 解凍する場合に既存のファイルを置き換える",
+			"# オプション -U（オプション --unlink-first) \n# 解凍する時に該当のファイルを削除する",
+			"# オプション --recursive-unlink \n# 解凍する時に該当のディレクトリを削除にする",
+			"# オプション --to-command=COMMAND \n# アーカイブから取り出したファイルをプログラムで開く",
+			"# オプション -m（オプション--touch）\n# アーカイブのファイルの更新時刻を現在時刻とする",
+			"# オプション--delay-directory-restore \n# すべての解凍が終了するまでファイルの属性を変えない",
+			"# オプション -O（オプション --to-stdout）\n# アーカイブから取り出したファイルを標準出力に表示",
+			"# ===========================",
+			"# 圧縮するアーカイブに関するオプション",
+			"# オプション -j（オプション --bzip2）\n# bzip2形式で圧縮する。",
+			"# オプション-z（オプション --gzip）\n# gzip形式で圧縮する。",
+			"# オプション--gunzip \n# gzip形式で圧縮されたアーカイブを解凍する",
+			"# ===========================",
+			"# その他オプション",
+			"# オプション -t（オプション --list)\n# アーカイブの内容を一覧表示",
+			"# オプション -M（オプション --multi-volume）\n# アーカイブを分割する",
+			"# オプション -d（オプション  --diff, オプション --compare）\n# アーカイブ元とアーカイブファイルの違いをチェックする",
+			"# オプション --test-label \n# アーカイブのボリューム情報を表示する"
+		],
+		"description": "tarコマンドのオプション"
+	},
+	"${変数名:-値}": {
+		"prefix": "k:-",
+		"body": [
+			"${$1:-$2}"
+		],
+		"description": "変数の値がセットされているかどうかだけをチェックして、値は上書きしたくない場合は:-を使う。"
+	},
+	"${変数名:?}": {
+		"prefix": "k:?",
+		"body": [
+			"${$1:?$2}"
+		],
+		"description": "変数の値を返す。ただし、変数が未定義or空文字列のときは、?以降の文字列を出力してスクリプトが出力します。\n例\n #シェル変数MYDIRをチェック。未定義もしくは空ならエラー終了\n: ${MYDIR:? シェル変数MYDIRがセットされていません}"
+	},
+	"${変数名:=値}": {
+		"prefix": "k:=",
+		"body": [
+			"${$1:=$2}"
+		],
+		"description": ":=が変数の値がセットされているかをチェックして、値を代入する。${変数名:=値}は、変数が設定されていないもしくは空のときは、指定した値を代入する。"
+	},
+	"${変数名:+値}": {
+		"prefix": "k:+",
+		"body": [
+			"${$1:+$2}"
+		],
+		"description": "変数が未定義もしくは空文字列のときは、nullを返す。以下のように使う。\n # 変数MYDIRをチェック。空文字列ではない値ならフラグflgに1をセット\nflg=${MYDIR:+1}"
+	},
+	"localコマンド": {
+		"prefix": "local",
+		"body": [
+			"local $1"
+		],
+		"description": "関数内でローカル変数を宣言するときに使う。"
+	},
+	"expr 変数名 : パターン": {
+		"prefix": "expr$",
+		"body": [
+			"expr \"\\$$1\" : \"\\($2\\)\""
+		],
+		"description": "正規表現を利用して変数内の文字列からマッチする部分を取り出すことができます。\nstring='This is a pen.'\nexpr 'This is a pen.' : 'This is a \\(.*\\).'\n出力 > pen"
+	},
+	"/dev/null": {
+		"prefix": "devnull",
+		"body": [
+			"/dev/null"
+		],
+		"description": "/dev/nullから読み込んでも何もデータは返されない\n/dev/nullにデータを書き込んでもどこにも書き込まれることはなくデータは消える\n不要な出力は/dev/nullにするようにする。"
+	},
+	"str_ex": {
+		"prefix": "str_ex",
+		"body": [
+			"# 文字列に関する評価演算子",
+			"# str1 = str2\n# str1とstr2が等しい(==と同じ)",
+			"# str1 == str2\n# str1とstr2が等しい(=と同じ)",
+			"# str1 != str2\n# str1とstr2が等しくない",
+			"# -n str1 \n# str1が空文字列ではない",
+			"# -z str1 \n# str1が空文字列である",
+			"# str1 < str2 \n# str1がstr2よりも辞書順で前にある",
+			"# str1 > str2 \n# str1がstr2よりも辞書順で後にある",
+		],
+		"description": "文字列に関する評価演算子"
+	},
+	"int_ex": {
+		"prefix": "int_ex",
+		"body": [
+			"# 整数に関する評価演算子",
+			"# int1 -eq int2\n# int1とint2が等しい",
+			"# int1 -ne int2\n# int1とint2が等しくない",
+			"# int1 -lt int2\n# int1がint2より小さい",
+			"# int1 -le int2\n# int1がint2以下",
+			"# int1 -gt int2\n# int1がint2より大きい",
+			"# int1 -ge int2\n# int1がint2以上",
+		],
+		"description": "整数に関する評価演算子\n eqはequal,ltはless than"
+	},
+	"file_ex": {
+		"prefix": "file_ex",
+		"body": [
+			"# ファイル属性に関する評価演算子",
+			"# -a file\n# fileが存在する(-eと同じ)",
+			"# -d file\n# fileが存在し、ディレクトリである",
+			"# -e file\n# fileが存在する(-aと同じ)",
+			"# -f file\n# fileが存在し、通常のファイルである",
+		],
+		"description": "ファイル属性に関する評価演算子"
+	},
+	"echo option": {
+		"prefix": "echo-option",
+		"body": [
+			"# echo コマンドのオプション",
+			"# echo -n 改行を追加しない",
+			"# echo -e エスケープ文字を有効にする",
+			"# ==============================",
+			"# echo コマンドで使用できるエスケープ文字",
+			"# ==============================",
+			"# \\a ベル",
+			"# \\b バックスペース",
+			"# \\c これ以降の出力を抑止する",
+			"# \\e エスケープ記号",
+			"# \\f フォームフィード",
+			"# \\n 改行(LF)",
+			"# \\r キャリッジリターン(CR)",
+			"# \\t タブ",
+			"# \\v 垂直タブ",
+			"# \\　\\そのもの",
+			"# \\0nnn nnnで表したASCⅡコードの文字。nnnは最大3桁の8進数の値",
+			"# \\xHH HHで表したASCⅡコードの文字。HHは最大2桁の16進数の値",
+			"# --------------------------------",
+			"# echo -E エスケープ文字を無効にする"
+		],
+		"description": "echo コマンドのオプション"
+	},
+	"printf option": {
+		"prefix": "printf-option",
+		"body": [
+			"# ==============================",
+			"# printfコマンドの形式",
+			"# ==============================",
+			"# printf 書式文字列 引数1 引数2...",
+			"# ==============================",
+			"# printfで使用できる代表的な書式指定文字",
+			"# ------------------------------",
+			"# %s 文字列",
+			"# %d 整数値",
+			"# %x 16新数値。ただしaからfまでの小文字表記",
+			"# %X 16新数値。ただしAからFまでの小文字表記",
+			"# %% %そのもの",
+			"# ------------------------------",
+			"# 引数で指定した文字列を標準出力に出力する。",
+			"# printf '%s\\n' \"\\$1\"",
+			"# ------------------------------",
+			"# printfコマンドで変数に文字列を代入する",
+			"# print -f msg 'value = %04x' \"255\"",
+			"# value = 00ff が msg へ代入される。",
+			"# ------------------------------",
+		],
+		"description": "printf コマンドのオプション"
+	},
+	"printf color": {
+		"prefix": "printf-e",
+		"body": [
+			"printf '\\e[$1m%s\\n\\e[m' \"$2\"",
+		],
+		"description": "printfコマンドを使って色を変える時に使う。\n\\e[ ... シーケンスエレメント\n m ... シーケンス終了を表すエンド・コード"
+	},
+}
+
