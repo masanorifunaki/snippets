@@ -20,5 +20,38 @@
 			"'use strict';"
 		],
 		"description": "use strict"
-	}
+	},
+	"app.get_auth_github": {
+		"prefix": "authgithub",
+		"body": [
+			"app.get('/auth/github',",
+			"\tpassport.authenticate('github', {",
+			"\t\tscope: ['user:email']",
+			"\t}),",
+			"\tfunction (req, res) {",
+			"\t\t//認証実行時にログを出力する必要性がある場合にはこの関数に記述する",
+			"\t});"
+		],
+		"description": "GitHub に対して、 スコープを user:email として、認証を行うように設定しています。"
+	},
+	"app.get_auth_github_re": {
+		"prefix": "authgithubre",
+		"body": [
+			"app.get('/auth/github/callback',",
+			"\tpassport.authenticate('github', {",
+			"\t\tfailureRedirect: '/login'",
+			"\t}),",
+			"\tfunction (req, res) {",
+			"\t\tres.redirect('/');",
+			"\t});"
+		],
+		"description": "GitHub が利用者の許可に対する問い合わせの結果を送るパス の /auth/github/callback のハンドラを登録しています。passport.authenticate('github', { failureRedirect: '/login' } で、認証が失敗した際には、再度ログインを促す /login にリダイレクトします。"
+	},
+	"req.user": {
+		"prefix": "req.user",
+		"body": [
+			"req.user"
+		],
+		"description": "req.user というオブジェクトにユーザー情報が含まれている。"
+	},
 }
