@@ -72,4 +72,12 @@
 		],
 		"description": "テストの処理を無名関数として第二引数に渡します。第一引数にはテストを行う対象を文字列で記述する"
 	},
+	"jquery": {
+		"prefix": "jquery",
+		"body": [
+			"const $ = require('jquery');",
+			"$1"
+		],
+		"description": "jquery モジュールを読み込み、 $ という名前の変数に代入。慣例として jQuery のオブジェクトは、 $ という変数に入れて利用する"
+	},
 }
