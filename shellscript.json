@@ -653,6 +653,48 @@
 			"basename \"\\$0\"",
 		],
 		"description": "ファイルの部分を取り出すコマンド\n${0##/*}と同じ"
+	},
+	"-maxdepth": {
+		"prefix": "-maxdepth",
+		"body": [
+			"-maxdepth $1",
+		],
+		"description": "findコマンドのオプション。-mathdepthでオプションを指定することで、サブディレクトリを対象としないようにする。\n-maxdepth 1 1階層(指定ディレクトリの直下)を対象"
+	},
+	":>": {
+		"prefix": "initfile:>",
+		"body": [
+			": > ",
+		],
+		"description": "空ファイル作成の時につかう"
+	},
+	"uptime": {
+		"prefix": "uptime",
+		"body": [
+			"uptime $1",
+		],
+		"description": "uptimeはサーバの稼働時間を調べるコマンド\n現在の時間:稼働時間:接続しているユーザー:システムにかかっている負荷（平均）:1m,5m,15m"
+	},
+	"sleep": {
+		"prefix": "sleep",
+		"body": [
+			"sleep",
+		],
+		"description": "sleepコマンドは、指定した時間だけ処理を遅延（シェルを停止）するコマンド\nオプションs秒 m分 h時間 d日数 sleep 10s 10秒遅延"
+	},
+	"stat": {
+		"prefix": "stat-x",
+		"body": [
+			"stat -x",
+		],
+		"description": "ファイルなどのタイムスタンプを確認する\n atime Access 最終アクセス時刻\n mtime Modify 最終修正時刻 \nctime Change 最終状態変更時刻"
+	},
+	"touch": {
+		"prefix": "touch",
+		"body": [
+			"touch $1",
+		],
+		"description": "空ファイルを作成する\n\t -tオプション atime mtimeを更新する\n\t -cオプション ファイルがない場合は新しく更新しない"
 	}
 }
 
