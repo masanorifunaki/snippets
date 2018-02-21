@@ -80,4 +80,22 @@
 		],
 		"description": "jquery モジュールを読み込み、 $ という名前の変数に代入。慣例として jQuery のオブジェクトは、 $ という変数に入れて利用する"
 	},
+	"soket.io-client": {
+		"prefix": "soket.io-client",
+		"body": [
+			"const socket = require('soket.io-client')('$1')",
+			"socket.on('$2', (data) => {",
+			"\t$3",
+			"});"
+		],
+		"description": "WebSocket のオブジェクトを、 socket.io-client モジュールから読み込み、('') に接続することで作成。"
+	},
+	"socket.io": {
+		"prefix": "socket.io",
+		"body": [
+			"var io = require('socket.io')(server);",
+			"$1"
+		],
+		"description": " Socket.IO のモジュールの読み込み、io というコネクションを表すオブジェクトを http モジュールの http.Server オブジェクトから作成"
+	},
 }
