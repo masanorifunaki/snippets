@@ -128,6 +128,15 @@
 		],
 		"description": "ヒアドキュメント"
 	},
+	"cat <<-END": {
+		"prefix": "cat<<-END",
+		"body": [
+			"cat <<-END",
+			"${1}",
+			"END"
+		],
+		"description": "ヒアドキュメント。行頭のタブを無視する"
+	},
 	"readonly VERSION=": {
 		"prefix": "readonly VERSION=",
 		"body": [
@@ -592,6 +601,13 @@
 		],
 		"description": "-i\n ファイルを編集して上書き保存する。\nBSD sed(Mac)での上書き保存には、バックアップ用拡張子の指定が必須。拡張子を「空文字」に指定する場合、バックアップされない。"
 	},
+	"sed-d": {
+		"prefix": "sed-d",
+		"body": [
+			"sed '/$1/d' $2",
+		],
+		"description": "パターンにマッチする行を削除する。"
+	},
 	"wc-l": {
 		"prefix": "wc-l",
 		"body": [
@@ -877,5 +893,40 @@
 			"sort | uniq -c | sort -nr",
 		],
 		"description": "1.ソートする。2.同一行の出現回数をカウントする。3.数値ソートと逆順ソートをかける。",
+	},
+	"iconv": {
+		"prefix": "iconv",
+		"body": [
+			"iconv -c -f $1 -t $2 $3",
+		],
+		"description": "iconv -f <入力文字コード> -t <出力文字コード> <ファイル名>",
+	},
+	"USR1": {
+		"prefix": "USR1",
+		"body": [
+			"USR1",
+		],
+		"description": "アプリケーションごとに独自に動作を定めることのできるシグナルです。Apache httpdでは、USR1シグナルを送るとgracefulモードで「穏やかな再起動」LinuxのddコマンドにUSR1シグナルを送ると、コマンドを続行されたまま「現在までに処理したブロック数」を途中表示させる。",
+	},
+	"trap": {
+		"prefix": "trap",
+		"body": [
+			"trap '$1' $2",
+		],
+		"description": "シグナルを受け取った際の動作をtrapコマンドで制御する。\ntrap '行いたい処理' シグナル\n trap 'date; exit' INT Ctrl + c が押されると現在時刻を表示してからexitコマンドでシェルスクリプトを終了します。",
+	},
+	"HUP": {
+		"prefix": "HUP",
+		"body": [
+			"HUP",
+		],
+		"description": "HUP（ハングアップ）シグナル\nプロセス終了させずに出力先のファイルを切り替えできる。サーバに常駐するデーモンプログラムなどでよく使われる手法",
+	},
+	".（ドットコマンド）": {
+		"prefix": ".（ドットコマンド）",
+		"body": [
+			".",
+		],
+		"description": ".（ドットコマンド）で外部ファイルを読み込んだ場合は、あたかもソースファイルがそこにそのまま挿入されたかのようにファイル内のコマンドが実行される",
 	},
 }
