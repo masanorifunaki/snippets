@@ -929,4 +929,46 @@
 		],
 		"description": ".（ドットコマンド）で外部ファイルを読み込んだ場合は、あたかもソースファイルがそこにそのまま挿入されたかのようにファイル内のコマンドが実行される",
 	},
+	"EXIT": {
+		"prefix": "EXIT",
+		"body": [
+			"EXIT",
+		],
+		"description": "EXITシグナルとは、bashで利用できる疑似シグナルで、正常終了した場合や強制終了時に発生する",
+	},
+	"ERR": {
+		"prefix": "ERR",
+		"body": [
+			"ERR",
+		],
+		"description": "bashの疑似シグナル。コマンドの終了ステータスが非ゼロだった。",
+	},
+	"DEBUG": {
+		"prefix": "DEBUG",
+		"body": [
+			"DEBUG",
+		],
+		"description": "bashの疑似シグナル。コマンドが実行された",
+	},
+	"RUTURN": {
+		"prefix": "RUTURN",
+		"body": [
+			"RUTURN",
+		],
+		"description": "bashの疑似シグナル。ドットコマンドまたはsourceコマンドで外部スクリプトを読み込んだ",
+	},
+	"scp": {
+		"prefix": "scp",
+		"body": [
+			"scp",
+		],
+		"description": "ファイル転送コマンド\n -C　ファイル圧縮\n scp <ファイル名> <ユーザー名>@<サーバ名>:<転送先パス>",
+	},
+	"time": {
+		"prefix": "time",
+		"body": [
+			"time -p",
+		],
+		"description": "指定したコマンドの実行時間とCPU利用時間を計算するコマンド。-p　秒数のみ表示。\nreal コマンドの起動から終了\n user　ユーザCPU時間\n sys システムCPU",
+	},
 }
