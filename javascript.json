@@ -1,101 +1,101 @@
 {
-	/*
-		// Place your snippets for JavaScript here. Each snippet is defined under a snippet name and has a prefix, body and
-		// description. The prefix is what is used to trigger the snippet and the body will be expanded and inserted. Possible variables are:
-		// $1, $2 for tab stops, $0 for the final cursor position, and ${1:label}, ${2:another} for placeholders. Placeholders with the
-		// same ids are connected.
-		// Example:
-		"Print to console": {
-			"prefix": "log",
-			"body": [
-				"console.log('$1');",
-				"$2"
-			],
-			"description": "Log output to console"
-		}
-	*/
-	"'use strict';": {
-		"prefix": "use strict",
-		"body": [
-			"'use strict';"
-		],
-		"description": "use strict"
-	},
-	"app.get_auth_github": {
-		"prefix": "authgithub",
-		"body": [
-			"app.get('/auth/github',",
-			"\tpassport.authenticate('github', {",
-			"\t\tscope: ['user:email']",
-			"\t}),",
-			"\tfunction (req, res) {",
-			"\t\t//認証実行時にログを出力する必要性がある場合にはこの関数に記述する",
-			"\t});"
-		],
-		"description": "GitHub に対して、 スコープを user:email として、認証を行うように設定しています。"
-	},
-	"app.get_auth_github_re": {
-		"prefix": "authgithubre",
-		"body": [
-			"app.get('/auth/github/callback',",
-			"\tpassport.authenticate('github', {",
-			"\t\tfailureRedirect: '/login'",
-			"\t}),",
-			"\tfunction (req, res) {",
-			"\t\tres.redirect('/');",
-			"\t});"
-		],
-		"description": "GitHub が利用者の許可に対する問い合わせの結果を送るパス の /auth/github/callback のハンドラを登録しています。passport.authenticate('github', { failureRedirect: '/login' } で、認証が失敗した際には、再度ログインを促す /login にリダイレクトします。"
-	},
-	"req.user": {
-		"prefix": "req.user",
-		"body": [
-			"req.user"
-		],
-		"description": "req.user というオブジェクトにユーザー情報が含まれている。"
-	},
-	"mocha it": {
-		"prefix": "it",
-		"body": [
-			"it('$1', () => {",
-			"\t$2",
-			"});"
-		],
-		"description": "it 関数を利用して、どのような要件をテストしているのかを記述する。第一引数に文字列でテストを行う要件、第二引数には、テスト自体の処理を無名関数として記述する"
-	},
-	"mocha describe": {
-		"prefix": "describe",
-		"body": [
-			"describe('#$1', () => {",
-			"\t$2",
-			"});"
-		],
-		"description": "テストの処理を無名関数として第二引数に渡します。第一引数にはテストを行う対象を文字列で記述する"
-	},
-	"jquery": {
-		"prefix": "jquery",
-		"body": [
-			"const $ = require('jquery');",
-			"$1"
-		],
-		"description": "jquery モジュールを読み込み、 $ という名前の変数に代入。慣例として jQuery のオブジェクトは、 $ という変数に入れて利用する"
-	},
-	"soket.io-client": {
-		"prefix": "soket.io-client",
-		"body": [
-			"const socket = require('soket.io-client')('$1')",
-			"socket.on('$2', (data) => {",
-			"\t$3",
-			"});"
-		],
-		"description": "WebSocket のオブジェクトを、 socket.io-client モジュールから読み込み、('') に接続することで作成。"
-	},
-	"socket.io": {
-		"prefix": "socket.io",
-		"body": [
-			"var io = require('socket.io')(server);",
-			"$1"
-		],
-		"description": " Socket.IO のモジュールの読み込み、io というコネクションを表すオブジェクトを http モジュールの http.Server オブジェクトから作成"
-	},
+  /*
+  	// Place your snippets for JavaScript here. Each snippet is defined under a snippet name and has a prefix, body and
+  	// description. The prefix is what is used to trigger the snippet and the body will be expanded and inserted. Possible variables are:
+  	// $1, $2 for tab stops, $0 for the final cursor position, and ${1:label}, ${2:another} for placeholders. Placeholders with the
+  	// same ids are connected.
+  	// Example:
+  	"Print to console": {
+  		"prefix": "log",
+  		"body": [
+  			"console.log('$1');",
+  			"$2"
+  		],
+  		"description": "Log output to console"
+  	}
+  */
+  "'use strict';": {
+    "prefix": "use strict",
+    "body": [
+      "'use strict';"
+    ],
+    "description": "use strict"
+  },
+  "app.get_auth_github": {
+    "prefix": "authgithub",
+    "body": [
+      "app.get('/auth/github',",
+      "\tpassport.authenticate('github', {",
+      "\t\tscope: ['user:email']",
+      "\t}),",
+      "\tfunction (req, res) {",
+      "\t\t//認証実行時にログを出力する必要性がある場合にはこの関数に記述する",
+      "\t});"
+    ],
+    "description": "GitHub に対して、 スコープを user:email として、認証を行うように設定しています。"
+  },
+  "app.get_auth_github_re": {
+    "prefix": "authgithubre",
+    "body": [
+      "app.get('/auth/github/callback',",
+      "\tpassport.authenticate('github', {",
+      "\t\tfailureRedirect: '/login'",
+      "\t}),",
+      "\tfunction (req, res) {",
+      "\t\tres.redirect('/');",
+      "\t});"
+    ],
+    "description": "GitHub が利用者の許可に対する問い合わせの結果を送るパス の /auth/github/callback のハンドラを登録しています。passport.authenticate('github', { failureRedirect: '/login' } で、認証が失敗した際には、再度ログインを促す /login にリダイレクトします。"
+  },
+  "req.user": {
+    "prefix": "req.user",
+    "body": [
+      "req.user"
+    ],
+    "description": "req.user というオブジェクトにユーザー情報が含まれている。"
+  },
+  "mocha it": {
+    "prefix": "it",
+    "body": [
+      "it('$1', () => {",
+      "\t$2",
+      "});"
+    ],
+    "description": "it 関数を利用して、どのような要件をテストしているのかを記述する。第一引数に文字列でテストを行う要件、第二引数には、テスト自体の処理を無名関数として記述する"
+  },
+  "mocha describe": {
+    "prefix": "describe",
+    "body": [
+      "describe('#$1', () => {",
+      "\t$2",
+      "});"
+    ],
+    "description": "テストの処理を無名関数として第二引数に渡します。第一引数にはテストを行う対象を文字列で記述する"
+  },
+  "jquery": {
+    "prefix": "jquery",
+    "body": [
+      "const $ = require('jquery');",
+      "$1"
+    ],
+    "description": "jquery モジュールを読み込み、 $ という名前の変数に代入。慣例として jQuery のオブジェクトは、 $ という変数に入れて利用する"
+  },
+  "soket.io-client": {
+    "prefix": "soket.io-client",
+    "body": [
+      "const socket = require('socket.io-client')('$1');",
+      "socket.on('$2', (data) => {",
+      "\t$3",
+      "});"
+    ],
+    "description": "WebSocket のオブジェクトを、 socket.io-client モジュールから読み込み、('') に接続することで作成。"
+  },
+  "socket.io": {
+    "prefix": "socket.io",
+    "body": [
+      "var io = require('socket.io')(server);",
+      "$1"
+    ],
+    "description": " Socket.IO のモジュールの読み込み、io というコネクションを表すオブジェクトを http モジュールの http.Server オブジェクトから作成"
+  },
 }
