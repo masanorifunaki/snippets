@@ -98,4 +98,39 @@
 		],
 		"description": " Socket.IO のモジュールの読み込み、io というコネクションを表すオブジェクトを http モジュールの http.Server オブジェクトから作成"
 	},
+	".expect": {
+		"prefix": "expect",
+		"body": [
+			".expect($1)"
+		],
+		"description": "expect 関数に、文字列を 2 つ引数として渡し、ヘッダにその値が存在するかをテストしています。\nexpect 関数に、正規表現を一つ渡すと、 HTML の body 内にその正規表現が含まれるかをテストします。"
+	},
+	"beforeafter": {
+		"prefix": "beforeafter",
+		"body": [
+			"before(() => {",
+			"\t$1",
+			"});",
+			"",
+			"after(() => {",
+			"\t$2",
+			"});",
+		],
+		"description": "describe 以下のテストを実行する前と後に実行したい処理を記述する。\nbefore 関数で記述された処理は describe 内のテスト前に、 after 関数で記述された処理は describe 内のテストの後に実行される\nこれは mocha の機能で、他にも各 it 内のテストの前後に実行させる処理も記述できる"
+	},
+	".get": {
+		"prefix": "get()",
+		"body": [
+			".get($1)"
+		],
+		"description": "()へのGET リクエストを作成する。"
+	},
+	"initRouter": {
+		"prefix": "initRouter",
+		"body": [
+			"const express = require('express');",
+			"const router = express.Router();"
+		],
+		"description": "Router オブジェクトの設定"
+	},
 }
