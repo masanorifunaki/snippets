@@ -1070,4 +1070,33 @@
 		],
 		"description": "シェル変数に対して、属性値などを設定・参照するコマンド\n -a 変数を配列として扱う。\n -A 変数をハッシュ(連想配列)として扱う\n -i 変数を整数として扱う \n -r 変数を読み取り専用として扱う(readonly) -x 変数を環境変数として扱う(export)\n -p 変数を参照する \n -f 現在定義されているシェル関数とその内容を表示する",
 	},
+	"プロセス置換え": {
+		"prefix": "p<()",
+		"body": [
+			"<($1) $2",
+		],
+		"description": "中間ファイルを作らずに処理するときに使う。",
+	},
+	"select-case": {
+		"prefix": "select-case",
+		"body": [
+			"PS3='$1'",
+			"select item in \"$2\"",
+			"do",
+			"\tcase \"$REPLY\" in",
+			"\t\t1)",
+			"\t\t\t$3",
+			"\t\t;;",
+			"\tesac",
+			"done"
+		],
+		"description": "bashがメニューを組み立てて、自動的に番号を振って表示する。\n PS3とは、select文が利用するbashのシェル変数で、この文字列がメニューへのプロンプトとして表示される。\n REPLY ユーザが選択した数値が代入される",
+	},
+	"RANDOM": {
+		"prefix": "RANDOM",
+		"body": [
+			"$RANDOM",
+		],
+		"description": "参照するたびに0から32767を返すｔtty",
+	},
 }
