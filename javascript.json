@@ -133,4 +133,50 @@
     ],
     "description": "Router オブジェクトの設定"
   },
+  "router.get": {
+    "prefix": "router.get",
+    "body": [
+      "router.get('$1', function (req, res, next) {",
+      "\t\t$2",
+      "});"
+    ],
+    "description": "router.getの型"
+  },
+  "router.post": {
+    "prefix": "router.post",
+    "body": [
+      "router.post('$1', function (req, res, next) {",
+      "\t\t$2",
+      "});"
+    ],
+    "description": "router.getの型"
+  },
+  "req": {
+    "prefix": "req",
+    "body": [
+      "req"
+    ],
+    "description": ""
+  },
+  "res": {
+    "prefix": "res",
+    "body": [
+      "res"
+    ],
+    "description": ""
+  },
+  "next": {
+    "prefix": "next",
+    "body": [
+      "next"
+    ],
+    "description": ""
+  },
+  "moment().format('YYYY-MM-DD HH:mm:ss')": {
+    "prefix": "format('YYYY-MM-DD HH:mm:ss')",
+    "body": [
+      ".format('YYYY-MM-DD HH:mm:ss');",
+    ],
+    "description": "日付用のライブラリMoment.js"
+  },
 }
